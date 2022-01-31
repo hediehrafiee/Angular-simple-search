@@ -1,13 +1,29 @@
 <!-- align-items-center -->
 <div class="h-100vh d-flex align-items-center justify-content-center">
   <div class="container">
+    <div class="mb-3">
+      <label>
+        {{ "TITLES.SELECT" | translate }}
+        <select #langSelect (change)="translate.use(langSelect.value)">
+          <option
+            *ngFor="let lang of translate.getLangs()"
+            [value]="lang"
+            [selected]="lang === translate.currentLang"
+          >
+            {{ lang }}
+          </option>
+        </select>
+      </label>
+    </div>
+
     <div class="input-group mb-3">
       <input
         type="text"
         class="form-control"
-        placeholder="Search with name ..."
+        placeholder="{{ 'TITLES.SEARCH' | translate }}"
         aria-label="Username"
         aria-describedby="basic-addon1"
+        (keyup)="search($event)"
       />
     </div>
 
@@ -15,29 +31,22 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">{{ "TABLE.HEDER.NAME" | translate }}</th>
+          <th scope="col">{{ "TABLE.HEDER.LAST" | translate }}</th>
+          <th scope="col">{{ "TABLE.HEDER.AGE" | translate }}</th>
+          <th scope="col">{{ "TABLE.HEDER.PHONE" | translate }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        <ng-container *ngFor="let user of users; let i = index">
+          <tr>
+            <th scope="row" [textContent]="i + 1"></th>
+            <td [textContent]="user.name"></td>
+            <td [textContent]="user.last"></td>
+            <td [textContent]="user.age"></td>
+            <td [textContent]="user.phone"></td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>

@@ -1,0 +1,14 @@
+{
+  "TITLES": {
+    "SELECT": "Select language :",
+    "SEARCH": "Search by name ..."
+  },
+  "TABLE": {
+    "HEDER": {
+      "NAME": "Name",
+      "LAST": "Last",
+      "AGE": "Age",
+      "PHONE": "Phone number"
+    }
+  }
+}
